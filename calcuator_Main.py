@@ -37,7 +37,7 @@ def click(event):  # clickinte function
 #main application window
 window = tk.Tk()
 window.title("Calculator")
-window.iconbitmap("c:/Users/abhis/Downloads/calculator-48_45851.ico")
+#window.iconbitmap("c:/Users/abhis/Downloads/calculator-48_45851.ico")
 
 # entry boxinte display
 display = tk.Entry(window, font=("Arial", 20), justify="right", borderwidth=2, relief="solid")
