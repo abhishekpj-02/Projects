@@ -1,46 +1,52 @@
-# Initialize the gradebook as an empty dictionary
 gradebook = {}
 
-def add(name, grade):
+def add_student():
+    name = input("Enter student name: ")
     if name in gradebook:
-        print(f"Student {name} already exists.")
+        print(f"Student '{name}' already exists with grade {gradebook[name]}.")
     else:
-        gradebook[name] = grade
-        print(f"Student {name} added with grade {grade}.")
+        try:
+            grade = float(input(f"Enter grade for {name}: "))
+            gradebook[name] = grade
+            print(f"Student '{name}' added with grade {grade}.")
+        except ValueError:
+            print("Invalid grade. Please enter a number.")
 
-def remove(name):
+def remove_student():
+    name = input("Enter student name to remove: ")
     if name in gradebook:
         del gradebook[name]
-        print(f"Student {name} removed.")
+        print(f"Student '{name}' removed.")
     else:
-        print(f"Student {name} does not exist.")
+        print(f"Student '{name}' does not exist.")
 
-def update_grade(name, grade):
+def update_grade():
+    name = input("Enter student name: ")
     if name in gradebook:
-        gradebook[name] = grade
-        print(f"Grade updated for student {name} to {grade}.")
+        try:
+            grade = float(input(f"Enter new grade for {name}: "))
+            gradebook[name] = grade
+            print(f"Updated grade for '{name}' to {grade}.")
+        except ValueError:
+            print("Invalid grade. Please enter a number.")
     else:
-        print(f"Student {name} does not exist.")
+        print(f"Student '{name}' does not exist.")
 
-def average():
+def calculate_average():
     if gradebook:
-        average = sum(gradebook.values()) / len(gradebook)
-        print(f"Average grade for the class is {average:.2f}.")
-        return average
+        avg = sum(gradebook.values()) / len(gradebook)
+        print(f"Average grade: {avg:.2f}.")
     else:
         print("No students in the gradebook.")
-        return None
-    
-def display():
+
+def display_students():
     if gradebook:
         print("\nStudent Grades:")
         for name, grade in gradebook.items():
-            print(f"- {name.capitalize()}: {grade}")
+            print(f"- {name}: {grade}")
     else:
         print("No students in the gradebook.")
 
-        
-# Menu Loop
 while True:
     print("\nGradebook Menu:")
     print("1. Add Student")
@@ -50,18 +56,18 @@ while True:
     print("5. Display Students")
     print("6. Exit")
 
-    choice = input("Enter your choice: ").strip()
+    choice = input("Enter your choice: ")
 
     if choice == "1":
-        add()
+        add_student()
     elif choice == "2":
-        remove()
+        remove_student()
     elif choice == "3":
         update_grade()
     elif choice == "4":
-        average()
+        calculate_average()
     elif choice == "5":
-        display()
+        display_students()
     elif choice == "6":
         print("Exiting the program. Goodbye!")
         break
